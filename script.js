@@ -4,12 +4,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // MOBILE NAV
     // =========================
 
-    const navLinks = document.querySelectorAll(
-        "#mainNav .nav-link"
-    );
+    const navLinks =
+        document.querySelectorAll("#mainNav .nav-link");
 
     const navCollapse =
         document.getElementById("mainNav");
+
 
     navLinks.forEach(function (link) {
 
@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (
                 window.innerWidth < 992 &&
+                navCollapse &&
                 navCollapse.classList.contains("show")
             ) {
 
@@ -26,11 +27,58 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
                 bootstrapCollapse.hide();
+
             }
 
         });
 
     });
+
+
+    // =========================
+    // HERO VIDEO
+    // =========================
+
+    const heroVideo =
+        document.getElementById("heroVideo");
+
+    const videoControl =
+        document.getElementById("videoControl");
+
+
+    if (heroVideo && videoControl) {
+
+        videoControl.addEventListener("click", function () {
+
+            if (heroVideo.paused) {
+
+                heroVideo.play();
+
+                videoControl.textContent =
+                    "❚❚ Pause";
+
+                videoControl.setAttribute(
+                    "aria-label",
+                    "Pause background video"
+                );
+
+            } else {
+
+                heroVideo.pause();
+
+                videoControl.textContent =
+                    "▶ Play";
+
+                videoControl.setAttribute(
+                    "aria-label",
+                    "Play background video"
+                );
+
+            }
+
+        });
+
+    }
 
 
     // =========================
@@ -53,8 +101,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             filterButtons.forEach(function (btn) {
+
                 btn.classList.remove("active");
+
             });
+
 
             button.classList.add("active");
 
@@ -63,6 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const category =
                     card.dataset.category;
+
 
                 if (
                     selectedFilter === "all" ||
@@ -129,7 +181,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         revealElements.forEach(function (element) {
+
             observer.observe(element);
+
         });
 
     } else {
